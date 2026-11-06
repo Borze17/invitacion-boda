@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
 /* ========== 1. VARIABLES Y BASE ========== */
 :root {
   --bronze: #b07d45;
@@ -61,19 +63,36 @@ h2 { font-size: 1.35rem; letter-spacing: .12em; text-transform: uppercase; color
 
 /* ========== 4. SECCIONES ========== */
 .kicker { color: var(--bronze); letter-spacing: .3em; font-size: .85rem; }
-.lead { margin-top: 36px; color: var(--bronze); line-height: 1.8; font-size: .95rem; }
-.verse { color: var(--bronze); font-size: .9rem; line-height: 1.6; margin-bottom: 44px; }
+.lead { font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-style: normal; margin-top: 36px; color: var(--bronze); line-height: 1.8; font-size: 1.3rem; }
+.verse { font-family: "Great Vibes", cursive; font-weight: 400; color: var(--bronze); font-size: 1.3rem; line-height: 1.6; margin-bottom: 44px; }
 .full-name { font: 400 2rem var(--display); }
 .amp { font: italic 1.8rem var(--display); margin: 26px 0; }
 .place { line-height: 1.7; }
 
 /* Galería */
-.slider { overflow: hidden; border-radius: 0 18px 18px 0; margin-inline: -24px; touch-action: pan-y; }
-.track { display: flex; transition: transform .6s ease; }
-.slide { flex: 0 0 100%; aspect-ratio: 8 / 7; object-fit: cover; background: #e7dcc6; }
-.dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
-.dots button { width: 12px; height: 12px; border: 0; border-radius: 12px; background: #d5d7bd; cursor: pointer; transition: width .3s; }
-.dots button.on { width: 36px; background: var(--olive); }
+/* Galería (Swiper coverflow) */
+.galeria {
+  margin-inline: -24px;        /* ocupa todo el ancho de la pantalla */
+  padding: 30px 0 50px;
+  --swiper-theme-color: var(--olive);
+  --swiper-pagination-bullet-inactive-color: #d5d7bd;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+}
+.galeria .swiper-slide {
+  width: 240px;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #e7dcc6;
+}
+.galeria .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* Recepción, cuenta regresiva y calendario */
 .pillars { position: absolute; inset: 40px 0 auto; display: flex; justify-content: space-between; opacity: .8; pointer-events: none; }
@@ -83,7 +102,17 @@ h2 { font-size: 1.35rem; letter-spacing: .12em; text-transform: uppercase; color
 .month { font-weight: 600; margin-bottom: 14px; }
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 14px; font-size: .95rem; }
 .cal-grid .dow { font-size: .75rem; padding-bottom: 8px; border-bottom: 2px solid var(--bronze); margin-bottom: 4px; grid-column: auto; }
-.cal-grid .today { color: #fff; font-weight: 600; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23b07d45' d='M16 29C4 20 2 12 6 8c4-4 9-2 10 2 1-4 6-6 10-2 4 4 2 12-10 21z'/%3E%3C/svg%3E") center / 34px no-repeat; line-height: 1.5; }
+.cal-grid .today {
+  width: 36px;
+  height: 36px;
+  margin: -7px auto;          /* compensa la altura extra para no mover las filas */
+  display: grid;
+  place-items: center;
+  padding-bottom: 3px;        /* sube el número al centro visual del corazón */
+  color: #fff;
+  font-weight: 600;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23b07d45' d='M16 29C4 20 2 12 6 8c4-4 9-2 10 2 1-4 6-6 10-2 4 4 2 12-10 21z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
 
 /* Mapa */
 .map { position: relative; height: 270px; border-radius: 20px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
@@ -138,3 +167,19 @@ dialog::backdrop { background: rgba(0,0,0,.55); }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s, transform .9s; }
 .reveal.show { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .petals { display: none; } .reveal { opacity: 1; transform: none; transition: none; } }
+
+.hero-card{
+  max-width: 360px;
+   margin: 28px auto;
+  aspect-ratio: 688/976;
+  background-image: url(../assets/img/marco.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: grid; 
+  padding: 0 12%;
+  place-content: center;
+  & .names{
+    color: #a8781f;
+  }
+}

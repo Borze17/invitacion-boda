@@ -39,27 +39,23 @@ $('openBtn').addEventListener('click', () => {
 });
 
 /* ========== 5. GALERÍA (carrusel con dots, swipe y autoplay) ========== */
-const track = document.querySelector('.track');
-const total = track.children.length;
-let current = 0, timer, startX = 0;
-total && Array.from({ length: total }, (_, i) => {
-  const b = document.createElement('button');
-  b.setAttribute('aria-label', `Foto ${i + 1}`);
-  b.onclick = () => { go(i); restart(); };
-  $('dots').appendChild(b);
+new Swiper('.galeria', {
+  effect: 'coverflow',
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: 'auto',
+  loop: true,              
+  speed: 3000,
+  autoplay: { delay: 2500, disableOnInteraction: false },
+  coverflowEffect: {
+    rotate: 40,
+    stretch: 0,
+    depth: 120,
+    modifier: 1,
+    slideShadows: true,
+  },
+  pagination: { el: '.swiper-pagination', clickable: true },
 });
-function go(i) {
-  current = (i + total) % total;
-  track.style.transform = `translateX(-${current * 100}%)`;
-  [...$('dots').children].forEach((d, k) => d.classList.toggle('on', k === current));
-}
-const restart = () => { clearInterval(timer); timer = setInterval(() => go(current + 1), 4000); };
-$('slider').addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), { passive: true });
-$('slider').addEventListener('touchend', (e) => {
-  const dx = e.changedTouches[0].clientX - startX;
-  if (Math.abs(dx) > 40) { go(current + (dx < 0 ? 1 : -1)); restart(); }
-});
-go(0); restart();
 
 /* ========== 6. CUENTA REGRESIVA ========== */
 const target = new Date(CONFIG.fecha).getTime();
