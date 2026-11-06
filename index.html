@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miguel &amp; Katty · Nuestra Boda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="locked">
+
+<!-- Dibujos SVG reutilizables (flor, esquina ornamental, columna) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="flower" viewBox="0 0 100 100">
+    <ellipse cx="30" cy="80" rx="26" ry="9" fill="#b9c4ab" transform="rotate(-35 30 80)"/>
+    <ellipse cx="72" cy="82" rx="26" ry="9" fill="#a9b79b" transform="rotate(30 72 82)"/>
+    <g fill="#fcf9f1" stroke="#dcd2ba">
+      <ellipse cx="50" cy="26" rx="15" ry="25"/><ellipse cx="50" cy="26" rx="15" ry="25" transform="rotate(72 50 50)"/>
+      <ellipse cx="50" cy="26" rx="15" ry="25" transform="rotate(144 50 50)"/><ellipse cx="50" cy="26" rx="15" ry="25" transform="rotate(216 50 50)"/>
+      <ellipse cx="50" cy="26" rx="15" ry="25" transform="rotate(288 50 50)"/>
+    </g>
+    <circle cx="50" cy="50" r="9" fill="#d8b85a"/><circle cx="50" cy="50" r="4" fill="#f3e3a4"/>
+  </symbol>
+  <symbol id="corner" viewBox="0 0 90 90">
+    <g fill="none" stroke="#b07d45" stroke-width="1.6" stroke-linecap="round">
+      <path d="M3 87V34Q3 3 34 3H87"/>
+      <path d="M34 3C20 3 14 14 22 20 30 26 40 18 33 11 29 8 24 12 27 15"/>
+      <path d="M3 34C3 20 14 14 20 22 26 30 18 40 11 33 8 29 12 24 15 27"/>
+      <path d="M14 87V40Q14 14 40 14H87" stroke-opacity=".45"/>
+    </g>
+  </symbol>
+  <symbol id="column" viewBox="0 0 40 220">
+    <g fill="#efe6d4" stroke="#d6c7a6">
+      <path d="M2 4h36v14H2zM6 18h28l-3 12H9zM11 30h18v158H11zM6 188h28v12H6zM2 200h36v16H2z"/>
+    </g>
+    <path d="M17 32v154M23 32v154" stroke="#d6c7a6"/>
+  </symbol>
+</svg>
+
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<!-- Música de fondo y botón flotante -->
+<audio id="music" src="assets/musica.mp3" loop preload="none"></audio>
+<button id="musicBtn" class="music-btn" aria-label="Reproducir o pausar música"><span></span><span></span><span></span></button>
+
+<!-- PORTADA -->
+<div id="cover" class="cover">
+  <div class="cover-card">
+    <svg class="flower f-tl"><use href="#flower"/></svg>
+    <svg class="flower f-br"><use href="#flower"/></svg>
+    <div class="heart-badge">&#x2665;</div>
+    <h1 class="names">Miguel<em>&amp;</em>Katty</h1>
+    <div class="divider"><i></i><b>❦</b><i></i></div>
+    <p class="cover-date">23 de diciembre de 2026</p>
+    <p class="cover-invite">Les Invitamos Cordialmente</p>
+    <button id="openBtn" class="btn">Abrir</button>
+  </div>
+</div>
+
+<main>
+  <!-- NOS CASAMOS -->
+  <section class="sec hero reveal">
+    <p class="kicker">NOS CASAMOS.</p>
+    <div class="frame big">
+      <h2 class="names caps">Miguel<em>&amp;</em>Katty</h2>
+      <svg class="flower f-bl"><use href="#flower"/></svg>
+      <svg class="flower f-br"><use href="#flower"/></svg>
+    </div>
+    <p class="lead">Los mejores momentos de la vida se comparten y estamos felices de hacerlo contigo.<br>Por ello, con el amor que nos une, la bendición de Dios y el apoyo de nuestros padres, tenemos la alegría de invitarles a nuestra Boda.</p>
+  </section>
+
+  <!-- VERSÍCULO, NOMBRES Y CEREMONIA -->
+  <section class="sec reveal">
+    <p class="verse">“Y sobre todo vístanse de amor, que es el vínculo perfecto”<br>Colosenses 3:14</p>
+    <p class="full-name">Miguel A. Aguilar</p>
+    <p class="amp">&amp;</p>
+    <p class="full-name">Luz K. Perez R.</p>
+    <h3 class="label">Ceremonia</h3>
+    <p class="place">Iglesia San Antonio<br>Final de la avenida Lisandro Alvarado, estacionamiento del Hospital Dr. Egidio Montesino</p>
+    <p class="label small">A las</p>
+    <p class="time">4:10 PM</p>
+    <div class="date-row"><span>MIÉRCOLES</span><b>23</b><span>DICIEMBRE</span></div>
+    <p class="year">2026</p>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="sec reveal">
+    <h2>Galería de fotos</h2>
+    <div class="slider" id="slider">
+      <div class="track">
+        <img class="slide" src="assets/img/foto1.jpg" alt="Miguel y Katty">
+        <img class="slide" src="assets/img/foto2.jpg" alt="Miguel y Katty">
+        <img class="slide" src="assets/img/foto3.jpg" alt="Miguel y Katty">
+        <img class="slide" src="assets/img/foto4.jpg" alt="Miguel y Katty">
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- RECEPCIÓN + CUENTA REGRESIVA + CALENDARIO -->
+  <section class="sec reveal">
+    <div class="pillars"><svg><use href="#column"/></svg><svg><use href="#column"/></svg></div>
+    <h3 class="label">La recepción se llevará a cabo a las:</h3>
+    <p class="time">6:00 PM</p>
+    <div class="date-row"><span>MIÉRCOLES</span><b>23</b><span>DICIEMBRE</span></div>
+    <p class="year">2026</p>
+
+    <h2>Cuenta regresiva</h2>
+    <p id="countdown" class="countdown">--</p>
+
+    <div class="frame cal">
+      <p class="month">Diciembre 2026</p>
+      <div class="cal-grid" id="calendar"></div>
+    </div>
+    <a href="#" id="addCal" class="link">Añadir al Calendario</a>
+    <button id="rsvpBtn" class="btn wide">CONFIRMAR ASISTENCIA</button>
+  </section>
+
+  <!-- LUGAR -->
+  <section class="sec reveal">
+    <h2>Restaurante La Barra de Domingo</h2>
+    <div class="map">
+      <iframe id="mapFrame" title="Ubicación de la recepción" loading="lazy"></iframe>
+      <a id="mapOpen" class="map-open" target="_blank" rel="noopener">Abrir en Maps ↗</a>
+    </div>
+    <a id="mapRoute" class="link" target="_blank" rel="noopener">Cómo llegar</a>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="sec reveal">
+    <h2>Dress code</h2>
+    <p class="theme">Bohemio</p>
+    <div class="swatches">
+      <i style="background:#dfccb1"></i><i style="background:#98a086"></i><i style="background:#846044"></i><i style="background:#c88e83"></i><i style="background:#c36241"></i>
+    </div>
+  </section>
+
+  <!-- PROGRAMA -->
+  <section class="sec reveal">
+    <h2>Programa del día</h2>
+    <ol class="timeline">
+      <li><time>4:10 PM</time><span>Ceremonia</span></li>
+      <li><time>6:00 PM</time><span>Recepción</span></li>
+      <li><time>6:30 PM</time><span>Llegada de los novios</span></li>
+      <li><time>8:00 PM</time><span>Cena</span></li>
+      <li><time>9:00 PM</time><span>Celebración</span></li>
+      <li class="end"></li>
+    </ol>
+  </section>
+
+  <!-- REGALOS -->
+  <section class="sec reveal">
+    <h2>Caja de regalos</h2>
+    <button class="envelopes" id="giftBtn" aria-label="Abrir caja de regalos"><div class="env e1"></div><div class="env e2"></div></button>
+    <p class="tap">Toca para abrir</p>
+    <p class="closing">Esperamos puedas acompañarnos en este día tan especial para nosotros.</p>
+  </section>
+</main>
+
+<!-- Ventanas emergentes (nativas con <dialog>) -->
+<dialog id="giftDialog" class="sheet">
+  <header><h3>Caja de regalos</h3><button class="close" data-close aria-label="Cerrar">✕</button></header>
+  <p>Sus buenos deseos son suficientes para nosotros y en caso de querer hacernos un regalo, este puede ser en efectivo mejor.</p>
+  <p>Att: M&amp;K</p>
+</dialog>
+
+<dialog id="rsvpDialog" class="modal">
+  <button class="close dark" data-close aria-label="Cerrar">✕</button>
+  <h3>Confirmar asistencia</h3>
+  <form id="rsvpForm">
+    <label>Nombre completo<input id="rName" required placeholder="Ej: María Pérez"></label>
+    <label>¿Asistirás?
+      <select id="rAttend"><option>Sí, con gusto asistiré</option><option>Lamentablemente no podré asistir</option></select>
+    </label>
+    <label>Acompañantes<input id="rGuests" type="number" min="0" max="5" value="0"></label>
+    <button class="btn wide" type="submit">Enviar por WhatsApp</button>
+  </form>
+</dialog>
+
+<script src="js/main.js"></script>
+</body>
+</html>
